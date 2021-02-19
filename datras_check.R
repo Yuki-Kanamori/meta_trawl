@@ -88,6 +88,28 @@ icesVocab::findAphia("haddock")
 # ---------------------------------------------------------------
 # get data (catch weight) -------------------------------------------------------
 # ---------------------------------------------------------------
+setwd(dir)
+# tabel = read.table("list_sharks.txt", header=TRUE, sep = '\t') %>% data.frame()
+table = read.csv("list_sharks.csv")
+summary(table)
+sp_list = unique(table$WoRMS_AphiaID)
+
+for(i in 1:length(sp_list)){
+  for(j in 1:length(year_length)){
+    data = getCatchWgt(survey = year_length[j, 1], years = year_length[j, 2]:year_length[j, 2], quarters = 1, aphia = i)
+  }
+}
+ 
+
+BTS = getCatchWgt(survey = slist[2], years = 1991:2016, quarters = 1, aphia = 105704)
+
+aphia = c(105704, 105705, 105706, 105713, 105714, 105715, 105716, 105717, 105743, 105744, 105775, 105787, 105788, 105817, 105819, 105838, 105839, 105839, 105840, 105841, 105898, 105899, 105900, 148801, 148802, 148804, 148805, 148806, 148807, 158508, 158510, 158512, 158513, 158514, 158515, 158516, 158521, 158523, 217626, 217630, 217632, 217635, 217637, 217638, 217639, 217640, 217641)
+
+test = read.table("list_test.txt")
 
 
-
+# ---------------------------------------------------------------
+# get data (catch weight) -------------------------------------------------------
+# ---------------------------------------------------------------
+hl_bits = getHLdata(survey = slist[1], year = 1991, quarter = 1)
+unique(hl_bits$Valid_Aphia)
