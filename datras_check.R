@@ -1,9 +1,19 @@
 require()
 
-install.packages("icesDatras")
+# install.packages("icesDatras")
 library(icesDatras)
 ?icesDatras
+## internet connection is needed for {icesDatras}
 
+
+dir = "/Users/Yuki/Dropbox/meta_trawl/DATRAS"
+setwd(dir)
+
+
+
+# ---------------------------------------------------------------
+# check for survey points and time-series  ----------------------
+# ---------------------------------------------------------------
 
 # survey list ---------------------------------------------------
 slist = getSurveyList()
@@ -41,29 +51,13 @@ names(ylist) = slist
 syqlist = NULL
 for(i in 1:length(slist)){
   for(j in 1:length(ylist)){
-    i = 1; j = 1
+    # i = 1; j = 1
     qlist = getSurveyYearQuarterList(survey = slist[i], year = ylist[[i]][[j]])
     temp = data.frame(survey = rep(paste0(slist[i]), each = length(qlist)), year = rep(paste0(ylist[[i]][[j]]), each = length(qlist)), quarter = qlist)
     
     syqlist = rbind(syqlist, temp)
   }
 }
-
-
-
-t = getSurveyYearQuarterList(survey = slist[1], year = ylist[[1]][[3]])
-yqlist = data.frame(survey = rep(paste0(slist[1]), each = length(t)), year = rep(paste0(ylist[[1]][[3]]), each = length(t)), quarter = t)
-
-
-yqlist = data.frame(quarter = t) %>% mutate(year = paste0(survey = paste0(slist[1]), ylist[[1]][[3]]))
-
-
-
-qlist = list()
-for(i in 1:length()){
-  
-}
-
 
 
 
