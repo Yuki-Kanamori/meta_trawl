@@ -41,10 +41,11 @@ names(ylist) = slist
 syqlist = NULL
 for(i in 1:length(slist)){
   for(j in 1:length(ylist)){
+    i = 1; j = 1
     qlist = getSurveyYearQuarterList(survey = slist[i], year = ylist[[i]][[j]])
     temp = data.frame(survey = rep(paste0(slist[i]), each = length(qlist)), year = rep(paste0(ylist[[i]][[j]]), each = length(qlist)), quarter = qlist)
     
-    
+    syqlist = rbind(syqlist, temp)
   }
 }
 
