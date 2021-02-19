@@ -66,3 +66,28 @@ setwd(dir)
 write.csv(syqlist, "syqlist.csv")
 write.csv(year_length, "year_length.csv")
 
+
+
+# ---------------------------------------------------------------
+# find species -------------------------------------------------------
+# ---------------------------------------------------------------
+# install.packages("icesAdvice")
+# install.packages("icesVocab")
+library(icesAdvice)
+?icesAdvice
+library(icesVocab)
+?icesVocab
+
+# cannot get all species ...
+icesVocab::findAphia("haddock")
+# find the ID here
+# http://datras.ices.dk/Data_products/qryspec.aspx
+
+
+
+# ---------------------------------------------------------------
+# get data (catch weight) -------------------------------------------------------
+# ---------------------------------------------------------------
+
+
+
