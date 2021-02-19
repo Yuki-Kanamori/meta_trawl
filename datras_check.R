@@ -96,7 +96,7 @@ sp_list = unique(table$WoRMS_AphiaID)
 
 for(i in 1:length(sp_list)){
   for(j in 1:length(year_length)){
-    data = getCatchWgt(survey = year_length[j, 1], years = year_length[j, 2]:year_length[j, 2], quarters = 1, aphia = i)
+    data = getCatchWgt(survey = year_length[j, 1], years = year_length[j, 2]:year_length[j, 2], quarters = 1, aphia = i) %>% mutate()
   }
 }
  
@@ -109,7 +109,17 @@ test = read.table("list_test.txt")
 
 
 # ---------------------------------------------------------------
-# get data (catch weight) -------------------------------------------------------
+# get data (length data) -------------------------------------------------------
 # ---------------------------------------------------------------
-hl_bits = getHLdata(survey = slist[1], year = 1991, quarter = 1)
+hl_ns = getHLdata(survey = slist[14], year = 1991, quarter = 1)
+colnames(hl_ns)
+
 unique(hl_bits$Valid_Aphia)
+
+
+
+# ---------------------------------------------------------------
+# get data (haul data) -------------------------------------------------------
+# ---------------------------------------------------------------
+hh_ns91 = getHHdata(survey = slist[14], year = 1991, quarter = 1)
+de = hh_ns91 %>% filter(Country == "DE")
