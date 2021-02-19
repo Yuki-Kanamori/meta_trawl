@@ -1,4 +1,4 @@
-require()
+require(tidyverse)
 
 # install.packages("icesDatras")
 library(icesDatras)
@@ -7,7 +7,6 @@ library(icesDatras)
 
 
 dir = "/Users/Yuki/Dropbox/meta_trawl/DATRAS"
-setwd(dir)
 
 
 
@@ -58,9 +57,12 @@ for(i in 1:length(slist)){
     syqlist = rbind(syqlist, temp)
   }
 }
+unique(syqlist$survey)
 
+year_length = syqlist %>% group_by(survey) %>% summarize(min = as.numeric(min(year)), max = as.numeric(max(year))) %>% mutate(duration = (max-min+1))
+year_length = year_length %>% mutate(duration = (max-min+1))
 
-
-
-
+setwd(dir)
+write.csv(syqlist, "syqlist.csv")
+write.csv(year_length, "year_length.csv")
 
